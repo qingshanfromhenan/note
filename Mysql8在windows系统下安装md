@@ -1,0 +1,47 @@
+# note
+Mysql8在windows系统下安装
+											By:qingshan
+## 1.	检查环境变量是否存在其他版本的mysql环境配置(path),如果存在,请删除mysql对应环境配置并重启电脑;
+## 2.	将mysql免安装压缩包(mysql-8.0.12-winx64.zip)解压到指定目录,注意上级目录中不要存在中文以及空格,
+## 3.	在解压后的mysql根目录下创建my.ini配置文件
+## 4.	配置文件内容
+ 
+[client]
+port=3506
+
+[mysql]
+no-beep
+default-character-set=utf8
+
+[mysqld]
+basedir="E:\workhome\mysql\home\mysql-8.0.12-winx64"
+datadir="E:\workhome\mysql\mysql8\data"
+max_connections=200
+port=3506
+character-set-server=utf8
+default-storage-engine=INNODB
+sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+## 5.	Cmd进入mysql根目录下bin目录初始化mysql服务执行命令: mysqld --initialize
+ 
+## 6.	将mysql注册到windows服务执行命令: mysqld --install amysql8
+ 
+## 7.	启动mysql服务
+ 
+## 8.	修改mysql初始密码,mysql初始密码在mysql初始化完毕后会出现在 {computerName}.err文件内
+ 
+Cmd控制台mysql根目录bin目录下通过命令:mysql -uroot -p回车后输入初始密码
+也可通过mysql -h127.0.0.1 -P3506 -uroot -p来指定MySQL主机以及端口进入mysq服务
+执行ALTER USER root@localhost IDENTIFIED  BY '123';
+修改初始密码为:123
+
+ 
+
+## 9.	通过navicat连接mysql8出现client does not support authentication protocol requested by server ;consider upgrading mysql client错误处理办法
+进入通过cmd进入MySQL服务执行以下命令,修改MySQL密码验证
+USE mysql;
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '123';
+FLUSH PRIVILEGES;
+ 
+
+
+
