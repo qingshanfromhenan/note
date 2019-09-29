@@ -1,6 +1,5 @@
-# note
-## linux系统环境配置
-## 1.安装jdk
+linux系统环境配置
+1.安装jdk
 	1.首先删除系统自带的（如果有）openjdk
 	rpm -qa | grep java或者rpm -qa | grep jdk
 	yum -y remove java
@@ -19,7 +18,7 @@
 	export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib  
 	export  PATH=${JAVA_HOME}/bin:$PATH
 	执行 source /etc/profile
-## 2.安装mysql
+2.安装mysql
 	下载安装包
 	wget http://repo.mysql.com/mysql57-community-release-el7-8.noarch.rpm
 	未安装wget执行以下命令安装
@@ -38,7 +37,7 @@
 	添加外部访问并刷新权限
 	GRANT ALL PRIVILEGES ON *.* TO 'qingshan'@'%' IDENTIFIED BY '123456' WITH GRANT OPTION;
 	FLUSH PRIVILEGES;
-## 3.安装nginx
+3.安装nginx
 	安装依赖包
 	yum -y install gcc zlib zlib-devel pcre-devel openssl openssl-devel
 	下载安装包
@@ -58,10 +57,30 @@
 	/usr/local/nginx/sbin/nginx -s reload
 	检查nginx配置文件
 	/root/server/nginx-1.6.2/sbin/nginx -t 
-## 4.安装tomcat
+	将nginx配置到环境变量
+	/etc/profile文件添加
+	PATH=$PATH:/usr/local/nginx/sbin
+	export  PATH
+	执行
+	source /etc/profile
+4.安装tomcat
 	下载tomcat
 	解压
 	bin目录下所有sh文件修改权限777
-## 5.安装redis
-
-## 6.安装svn服务端
+5.安装redis
+	下载安装包
+	wget http://download.redis.io/releases/redis-4.0.8.tar.gz
+	解压
+	tar xzvf redis-4.0.8.tar.gz
+	安装
+	cd redis-4.0.8
+　　make
+　　cd src
+　　make install PREFIX=/usr/local/redis
+	配置redis为后台启动
+	redis.conf //将daemonize no 改成daemonize yes
+	启动redis
+	/root/server/redis/bin/redis-server /root/server/redis/redis-4.0.8/redis.conf 
+	停止redis
+	pkill redis
+6.安装svn服务端
