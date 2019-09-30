@@ -1,4 +1,4 @@
-linux系统环境配置
+# linux系统环境配置
 ## 1.安装jdk
 	1.首先删除系统自带的（如果有）openjdk
 	rpm -qa | grep java或者rpm -qa | grep jdk
@@ -74,9 +74,9 @@ linux系统环境配置
 	tar xzvf redis-4.0.8.tar.gz
 	安装
 	cd redis-4.0.8
-　　make
-　　cd src
-　　make install PREFIX=/usr/local/redis
+　　    make
+　　    cd src
+　　    make install PREFIX=/usr/local/redis
 	配置redis为后台启动
 	redis.conf //将daemonize no 改成daemonize yes
 	启动redis
