@@ -129,9 +129,13 @@ firewall-cmd --set-default-zone=dmz 设定默认使用的域
 ps -ef | grep nginx
 
 /usr/local/nginx 配置
+
 /root/server/nginx-1.6.2/sbin/nginx 启动
+
 /root/server/nginx-1.6.2/sbin/nginx -s reload            # 重新载入配置文件
+
 /root/server/nginx-1.6.2/sbin/nginx -s reopen            # 重启 Nginx
+
 /root/server/nginx-1.6.2/sbin/nginx -s stop              # 停止 Nginx
 
 /root/server/nginx-1.6.2/sbin/nginx -t    检查配置文件nginx.conf的正确性命令
